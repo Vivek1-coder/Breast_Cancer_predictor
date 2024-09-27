@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast cancer predictor</title>
+    <style>
+        *{
+            background-color: rgb(227, 227, 238);
+        }
+        .head{
+            text-align: center;
+        }
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+           
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #140c0c;
+
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="head">
+        <h1>Breast Cancer Predictor</h1>
+    </div>
+    
+    <form action="{{url_for('predict')}}" method="post">
+        <table>
+            <tr>
+                <th>Patient Report</th>
+                <th>Input</th>
+            </tr>
+            <tr>
+                <td><label for="mean_radius">Mean Radius</label></td>
+                <td><input type="text" id="mean_radius" name="mean_radius" required></td>
+            </tr>
+            <tr>
+                <td><label for="mean_texture">Mean Texture</label></td>
+                <td><input type="text" id="mean_texture" name="mean_texture" required></td>
+            </tr>
+            <tr>
+                <td><label for="mean_perimeter">Mean Perimeter</label></td>
+                <td><input type="text" id="mean_perimeter" name="mean_perimeter" required></td>
+            </tr>
+            <tr>
+                <td><label for="mean_area">Mean Area</label></td>
+                <td><input type="text" id="mean_area" name="mean_area" required></td>
+            </tr>
+            <tr>
+                <td><label for="mean_smoothness">Mean Smoothness</label></td>
+                <td><input type="text" id="mean_smoothness" name="mean_smoothness" required></td>
+            </tr>
+            <tr>
+                <td><label for="mean_compactness">Mean Compactness</label></td>
+                <td><input type="text" id="mean_compactness" name="mean_compactness" required></td>
+            </tr>
+            <tr>
+                <td><label for="mean_concavity">Mean Concavity</label></td>
+                <td><input type="text" id="mean_concavity" name="mean_concavity" required></td>
+            </tr>
+            <tr>
+                <td><label for="mean_concave_points">Mean Concave Points</label></td>
+                <td><input type="text" id="mean_concave_points" name="mean_concave_points" required></td>
+            </tr>
+            <tr>
+                <td><label for="mean_symmetry">Mean Symmetry</label></td>
+                <td><input type="text" id="mean_symmetry" name="mean_symmetry" required></td>
+            </tr>
+            <tr>
+                <td><label for="mean_fractal_dimension">Mean Fractal Dimension</label></td>
+                <td><input type="text" id="mean_fractal_dimension" name="mean_fractal_dimension" required></td>
+            </tr>
+            <tr>
+                <td><label for="radius_error">Radius Error</label></td>
+                <td><input type="text" id="radius_error" name="radius_error" required></td>
+            </tr>
+            <tr>
+                <td><label for="texture_error">Texture Error</label></td>
+                <td><input type="text" id="texture_error" name="texture_error" required></td>
+            </tr>
+            <tr>
+                <td><label for="perimeter_error">Perimeter Error</label></td>
+                <td><input type="text" id="perimeter_error" name="perimeter_error" required></td>
+            </tr>
+            <tr>
+                <td><label for="area_error">Area Error</label></td>
+                <td><input type="text" id="area_error" name="area_error" required></td>
+            </tr>
+            <tr>
+                <td><label for="smoothness_error">Smoothness Error</label></td>
+                <td><input type="text" id="smoothness_error" name="smoothness_error" required></td>
+            </tr>
+            <tr>
+                <td><label for="compactness_error">Compactness Error</label></td>
+                <td><input type="text" id="compactness_error" name="compactness_error" required></td>
+            </tr>
+            <tr>
+                <td><label for="concavity_error">Concavity Error</label></td>
+                <td><input type="text" id="concavity_error" name="concavity_error" required></td>
+            </tr>
+            <tr>
+                <td><label for="concave_points_error">Concave Points Error</label></td>
+                <td><input type="text" id="concave_points_error" name="concave_points_error" required></td>
+            </tr>
+            <tr>
+                <td><label for="symmetry_error">Symmetry Error</label></td>
+                <td><input type="text" id="symmetry_error" name="symmetry_error" required></td>
+            </tr>
+            <tr>
+                <td><label for="fractal_dimension_error">Fractal Dimension Error</label></td>
+                <td><input type="text" id="fractal_dimension_error" name="fractal_dimension_error" required></td>
+            </tr>
+            <tr>
+                <td><label for="worst_radius">Worst Radius</label></td>
+                <td><input type="text" id="worst_radius" name="worst_radius" required></td>
+            </tr>
+            <tr>
+                <td><label for="worst_texture">Worst Texture</label></td>
+                <td><input type="text" id="worst_texture" name="worst_texture" required></td>
+            </tr>
+            <tr>
+                <td><label for="worst_perimeter">Worst Perimeter</label></td>
+                <td><input type="text" id="worst_perimeter" name="worst_perimeter" required></td>
+            </tr>
+            <tr>
+                <td><label for="worst_area">Worst Area</label></td>
+                <td><input type="text" id="worst_area" name="worst_area" required></td>
+            </tr>
+            <tr>
+                <td><label for="worst_smoothness">Worst Smoothness</label></td>
+                <td><input type="text" id="worst_smoothness" name="worst_smoothness" required></td>
+            </tr>
+            <tr>
+                <td><label for="worst_compactness">Worst Compactness</label></td>
+                <td><input type="text" id="worst_compactness" name="worst_compactness" required></td>
+            </tr>
+            <tr>
+                <td><label for="worst_concavity">Worst Concavity</label></td>
+                <td><input type="text" id="worst_concavity" name="worst_concavity" required></td>
+            </tr>
+            <tr>
+                <td><label for="worst_concave_points">Worst Concave Points</label></td>
+                <td><input type="text" id="worst_concave_points" name="worst_concave_points" required></td>
+            </tr>
+            <tr>
+                <td><label for="worst_symmetry">Worst Symmetry</label></td>
+                <td><input type="text" id="worst_symmetry" name="worst_symmetry" required></td>
+            </tr>
+            <tr>
+                <td><label for="worst_fractal_dimension">Worst Fractal Dimension</label></td>
+                <td><input type="text" id="worst_fractal_dimension" name="worst_fractal_dimension" required></td>
+            </tr>
+           
+        </table>
+        <button type="submit">Predict</button>
+    </form>
+</body>
+</html>
